@@ -1,3 +1,6 @@
+<button (click)="next()"> Next </button>
+
+
 <div *ngFor="let row of grid.cells; let i = index;" fxLayout="row" fxLayoutAlign="center center">
   <div *ngFor="let cell of grid.cells[i]">
     <gol-cell [cell]="cell" (cellClicked)="cellClicked($event)"></gol-cell>

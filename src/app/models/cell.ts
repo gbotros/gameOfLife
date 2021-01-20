@@ -1,25 +1,36 @@
 export class Cell {
 
   constructor(row: number, col: number, isAlive: boolean) {
-    this.row = row;
-    this.col = col;
-    this.isAlive = isAlive;
+    this._row = row;
+    this._col = col;
+    this._isAlive = isAlive;
   }
 
-  public row: number;
-  public col: number;
-  public isAlive: boolean;
+  private _row: number;
+  public get row(): number {
+    return this._row;
+  }
+
+  private _col: number;
+  public get col(): number {
+    return this._col;
+  }
+
+  private _isAlive: boolean;
+  public get isAlive(): boolean {
+    return this._isAlive;
+  }
 
   public Live(): void {
-    this.isAlive = true;
+    this._isAlive = true;
   }
 
   public Die(): void {
-    this.isAlive = false;
+    this._isAlive = false;
   }
 
   public Flip(): void {
-    this.isAlive = !this.isAlive;
+    this._isAlive = !this.isAlive;
   }
 }
 

@@ -51,4 +51,8 @@ export class GridComponent implements OnInit {
   public cellClicked(cell: Cell): void {
     cell.Flip();
   }
+
+  public next(): void {
+    this.grid.next();
+  }
 }
