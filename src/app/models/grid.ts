@@ -25,7 +25,6 @@ export class Grid {
   public next(): void {
     const next = new Array(this.rowsCount);
 
-    debugger;
     // update the temporary next array
     for (let r = 0; r < this.rowsCount; r++) {
       next[r] = new Array(this.colsCount);
@@ -35,13 +34,24 @@ export class Grid {
       }
     }
 
-    // debugger;
     this.cells = next;
-    // for (let r = 0; r < this.rowsCount; r++) {
-    //   for (let c = 0; c < this.colsCount; c++) {
-    //     this.cells[r][c] = next[r][c];
-    //   }
-    // }
+  }
+
+  public drawGliderPattern(): void {
+    this.killAll();
+    this.cells[0][0].Live();
+    this.cells[1][1].Live();
+    this.cells[2][1].Live();
+    this.cells[0][2].Live();
+    this.cells[1][2].Live();
+  }
+
+  public killAll(): void {
+    for (let r = 0; r < this.rowsCount; r++) {
+      for (let c = 0; c < this.colsCount; c++) {
+        this.cells[r][c].Die();
+      }
+    }
   }
 
   private liveOrDie(r: number, c: number): boolean {

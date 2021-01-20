@@ -55,4 +55,8 @@ export class GridComponent implements OnInit {
   public next(): void {
     this.grid.next();
   }
+
+  public drawGlider(): void {
+    this.grid.drawGliderPattern();
+  }
 }
