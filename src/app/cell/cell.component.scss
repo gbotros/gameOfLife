@@ -1,0 +1,11 @@
+.cell {
+  width: 64px;
+  height: 64px;
+  border: 1px solid #faefae;
+}
+.alive {
+  background-color: greenyellow;
+}
+.dead {
+  background-color: grey;
+}

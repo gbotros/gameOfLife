@@ -108,7 +108,8 @@
       "options": [
         "ban-keywords",
         "check-format",
-        "allow-pascal-case"
+        "allow-pascal-case",
+        "allow-leading-underscore"
       ]
     },
     "whitespace": {
@@ -139,13 +140,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "gol",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "gol",
       "kebab-case"
     ]
   }
