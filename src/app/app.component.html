@@ -2,8 +2,11 @@
   Game Of life
 </h1>
 
-<!-- <button (click)="next()"></button> -->
+<button (click)="drawGlider()"> Draw Glider patteren </button>
+<button (click)="play()" *ngIf="!inPlayMode"> Play </button>
+<button (click)="pause()" *ngIf="inPlayMode"> Pause </button>
+<button (click)="next()" *ngIf="!inPlayMode"> Next </button>
 
-<gol-grid [rowsCount]="10" [colsCount]="10">
+<gol-grid>
 
 </gol-grid>

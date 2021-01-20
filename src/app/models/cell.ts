@@ -32,6 +32,16 @@ export class Cell {
   public Flip(): void {
     this._isAlive = !this.isAlive;
   }
+
+  public update(isAlive: boolean): void {
+    if (isAlive) {
+      this.Live();
+    }
+    else {
+      this.Die();
+    }
+  }
+
 }
 
 export const NullCell: Cell = new Cell(-1, -1, false);

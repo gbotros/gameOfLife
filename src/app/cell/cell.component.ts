@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Cell, NullCell } from '../models/Cell';
+import { Cell, NullCell } from '../models/cell';
 
 @Component({
   selector: 'gol-cell',

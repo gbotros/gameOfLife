@@ -1,4 +1,4 @@
-import { Cell } from './Cell';
+import { Cell } from './cell';
 
 export class Grid {
 
@@ -17,33 +17,36 @@ export class Grid {
     for (let r = 0; r < rowsCount; r++) {
       this.cells[r] = new Array(colsCount);
       for (let c = 0; c < colsCount; c++) {
-        this.cells[r][c] = new Cell(r, c, true);
+        this.cells[r][c] = new Cell(r, c, false);
       }
     }
   }
 
-  public next(): void {
-    const next = new Array(this.rowsCount);
+  public next(): Grid {
+    const nextGrid = new Grid(this.rowsCount, this.colsCount);
 
     // update the temporary next array
     for (let r = 0; r < this.rowsCount; r++) {
-      next[r] = new Array(this.colsCount);
       for (let c = 0; c < this.colsCount; c++) {
         const lod = this.liveOrDie(r, c);
-        next[r][c] = new Cell(r, c, lod);
+        nextGrid.updateCell(r, c, lod);
       }
     }
 
-    this.cells = next;
+    return nextGrid;
   }
 
-  public drawGliderPattern(): void {
-    this.killAll();
-    this.cells[0][0].Live();
-    this.cells[1][1].Live();
-    this.cells[2][1].Live();
-    this.cells[0][2].Live();
-    this.cells[1][2].Live();
+  public getGliderPatternGrid(): Grid {
+
+    const gliderGrid = new Grid(this.rowsCount, this.colsCount);
+    gliderGrid.killAll();
+    gliderGrid.cells[0][0].Live();
+    gliderGrid.cells[1][1].Live();
+    gliderGrid.cells[2][1].Live();
+    gliderGrid.cells[0][2].Live();
+    gliderGrid.cells[1][2].Live();
+
+    return gliderGrid;
   }
 
   public killAll(): void {
@@ -52,6 +55,10 @@ export class Grid {
         this.cells[r][c].Die();
       }
     }
+  }
+
+  public updateCell(row: number, col: number, isAlive: boolean): void {
+    this.cells[row][col].update(isAlive);
   }
 
   private liveOrDie(r: number, c: number): boolean {
@@ -90,7 +97,7 @@ export class Grid {
 
 }
 
-export const NullGrid: Grid = new Grid(0, 0);
+export const DefaultGrid: Grid = new Grid(10, 10);
 
 
 
