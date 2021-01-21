@@ -43,7 +43,8 @@ const gridReducer = createReducer(
     currentGrid: state.currentGrid.getGliderPatternGrid()
   })),
   on(flipCellAction, (state: State, { row, col }): State => {
-    const currentGrid = state.currentGrid;
+
+    const currentGrid = Grid.copy(state.currentGrid);
     currentGrid.cells[row][col].Flip();
     return {
       ...state,

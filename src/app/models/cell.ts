@@ -30,7 +30,7 @@ export class Cell {
   }
 
   public Flip(): void {
-    this._isAlive = !this.isAlive;
+    this._isAlive = !this._isAlive;
   }
 
   public update(isAlive: boolean): void {

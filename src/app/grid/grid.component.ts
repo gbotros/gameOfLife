@@ -24,7 +24,6 @@ export class GridComponent {
   }
 
   public cellClicked(cell: Cell): void {
-    console.log(cell);
     this.store.dispatch(flipCellAction({ row: cell.row, col: cell.col }));
   }
 
