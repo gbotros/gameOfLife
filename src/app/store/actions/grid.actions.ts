@@ -6,6 +6,7 @@ export enum GridActions {
   DrawGliderPattern = '[GameOfLife] DrawGliderPattern',
   FlipCellAction = '[GameOfLife] FlipCellAction',
   DrawPatternAction = '[GameOfLife] DrawPatternAction',
+  SetGridSizeAction = '[GameOfLife] SetGridSizeAction',
 
   SavePattern = '[GameOfLife] SavePattern',
   SavePatternSuccess = '[GameOfLife] SavePatternSuccess',
@@ -35,6 +36,11 @@ export const flipCellAction = createAction(
 export const drawPatternAction = createAction(
   GridActions.DrawPatternAction,
   props<{ name: string }>()
+);
+
+export const setGridSizeAction = createAction(
+  GridActions.SetGridSizeAction,
+  props<{ rows: number, cols: number }>()
 );
 
 export const savePatternAction = createAction(

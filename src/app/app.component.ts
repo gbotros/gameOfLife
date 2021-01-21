@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable, Subscription, timer } from 'rxjs';
 import { take, takeWhile, tap } from 'rxjs/operators';
 import { Grid } from './models/grid';
-import { drawGliderPatternAction, loadAllPatternsAction, nextDayAction, savePatternAction } from './store/actions/grid.actions';
+import { drawGliderPatternAction, loadAllPatternsAction, nextDayAction, savePatternAction, setGridSizeAction } from './store/actions/grid.actions';
 import { RootState } from './store/reducers';
 import { getCurrentGrid } from './store/selectors/grid.selectors';
 
@@ -18,6 +18,8 @@ export class AppComponent {
   public patternName = 'Pattern Sample 1';
   public patternNumber = 1;
   private readonly _1sec = 1000;
+  public rows = 10;
+  public cols = 10;
   private playModeSubscription = new Subscription();
 
   constructor(private store: Store<RootState>) {
@@ -60,4 +62,8 @@ export class AppComponent {
     this.store.dispatch(loadAllPatternsAction());
   }
 
+  public setGridSize(): void {
+    this.store.dispatch(setGridSizeAction({ rows: this.rows, cols: this.cols }));
+    this.drawGlider();
+  }
 }

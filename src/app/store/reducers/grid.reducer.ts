@@ -13,7 +13,8 @@ import {
   removePatternSuccessAction,
   savePatternAction,
   savePatternFailureAction,
-  savePatternSuccessAction
+  savePatternSuccessAction,
+  setGridSizeAction
 } from '../actions/grid.actions';
 
 
@@ -50,7 +51,13 @@ const gameReducer = createReducer(
   on(drawPatternAction, (state: State, { name }): State => {
     return {
       ...state,
-      currentGrid: state.allGrids[name]
+      currentGrid: Grid.copy(state.allGrids[name])
+    };
+  }),
+  on(setGridSizeAction, (state: State, { rows, cols }): State => {
+    return {
+      ...state,
+      currentGrid: new Grid(rows, cols)
     };
   }),
 

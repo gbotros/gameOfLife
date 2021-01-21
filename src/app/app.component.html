@@ -8,10 +8,15 @@
 <button (click)="next()" *ngIf="!inPlayMode"> Next </button>
 
 <div>
-  <input [(ngModel)]="patternName" />
+  <input [(ngModel)]="patternName" placeholder="Name your pattern" />
   <button (click)="save()"> Save pattern </button>
 </div>
 
+<div>
+  <input [(ngModel)]="rows" placeholder="Rows Count" type="number" min="3" max="20" />
+  <input [(ngModel)]="cols" placeholder="Columns Count" type="number" min="3" max="20" />
+  <button (click)="setGridSize()"> Change Grid Size</button>
+</div>
 
 <gol-pattern-list></gol-pattern-list>
 
