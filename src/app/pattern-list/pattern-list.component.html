@@ -1,4 +1,4 @@
-<div *ngFor="let g of allGrids$ | async | keyvalue">
+<div *ngFor="let g of allGrids$ | async | keyvalue" class="list-item">
   {{ g.key }}
   <button (click)="onDrawClick(g.key)">Draw</button>
   <button (click)="onRemoveClick(g.key)">Remove</button>

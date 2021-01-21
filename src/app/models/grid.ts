@@ -115,4 +115,4 @@ export class Grid {
 
 }
 
-export const DefaultGrid: Grid = new Grid(10, 10);
+export const DefaultGrid: Grid = new Grid(20, 20);

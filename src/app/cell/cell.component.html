@@ -1,3 +1,10 @@
 <div (click)="click()" class="cell" [ngClass]="{ 'alive': cell.isAlive, 'dead': !cell.isAlive }">
-  {{ cell.row }}, {{ cell.col }}
+
+  <span *ngIf="cell.row === 0">
+    {{ cell.col }}
+  </span>
+
+  <span *ngIf="cell.col === 0">
+    {{ cell.row }}
+  </span>
 </div>
