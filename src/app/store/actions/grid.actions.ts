@@ -6,9 +6,9 @@ export enum GridActions {
   DrawGliderPattern = '[GameOfLife] DrawGliderPattern',
   FlipCellAction = '[GameOfLife] FlipCellAction',
 
-  SorePattern = '[GameOfLife] SorePattern',
-  SorePatternSuccess = '[GameOfLife] SorePatternSuccess',
-  SorePatternFailure = '[GameOfLife] SorePatternFailure',
+  SavePattern = '[GameOfLife] SavePattern',
+  SavePatternSuccess = '[GameOfLife] SavePatternSuccess',
+  SavePatternFailure = '[GameOfLife] SavePatternFailure',
 
   LoadAllPatterns = '[GameOfLife] LoadAllPatterns',
   LoadAllPatternsSuccess = '[GameOfLife] LoadAllPatternsSuccess',
@@ -27,24 +27,25 @@ export const flipCellAction = createAction(
   GridActions.DrawGliderPattern
 );
 
-export const storePatternAction = createAction(
-  GridActions.SorePattern
+export const savePatternAction = createAction(
+  GridActions.SavePattern,
+  props<{ name: string, grid: Grid }>()
 );
-export const storePatternSuccessAction = createAction(
-  GridActions.SorePattern
+export const savePatternSuccessAction = createAction(
+  GridActions.SavePatternSuccess
 );
-export const storePatternFailureAction = createAction(
-  GridActions.SorePattern
+export const savePatternFailureAction = createAction(
+  GridActions.SavePatternFailure,
+  props<{ error: string }>()
 );
 
 export const loadAllPatternsAction = createAction(
   GridActions.LoadAllPatterns
 );
-
 export const loadAllPatternsSuccessAction = createAction(
-  GridActions.LoadAllPatterns
+  GridActions.LoadAllPatternsSuccess
 );
-
 export const loadAllPatternsFailureAction = createAction(
-  GridActions.LoadAllPatterns
+  GridActions.LoadAllPatternsFailure,
+  props<{ error: string }>()
 );

@@ -6,7 +6,7 @@ import { tap, map } from 'rxjs/operators';
 import { Cell } from '../models/cell';
 import { Grid, DefaultGrid } from '../models/grid';
 import { RootState } from '../store/reducers';
-import * as fromGame from '../store/reducers/game-reducer.reducer';
+import * as fromGame from '../store/reducers/grid.reducer';
 import { getCurrentGrid } from '../store/selectors/grid.selectors';
 
 @Component({

@@ -10,7 +10,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import { Grid } from 'src/app/models/grid';
 import { environment } from '../../../environments/environment';
 import { GridActions } from '../actions/grid.actions';
-import * as fromGame from './game-reducer.reducer';
+import * as fromGame from './grid.reducer';
 
 export interface RootState {
   gameState: fromGame.State;

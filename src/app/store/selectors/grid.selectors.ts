@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { RootState } from '../reducers';
-import * as fromGame from '../reducers/game-reducer.reducer';
-import { State } from '../reducers/game-reducer.reducer';
+import * as fromGame from '../reducers/grid.reducer';
+import { State } from '../reducers/grid.reducer';
 
 
 export const selectGameFeature = (state: RootState) => state.gameState;

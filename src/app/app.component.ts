@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subscription, timer } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
-import { drawGliderPatternAction, nextDayAction } from './store/actions/grid.actions';
+import { take, takeWhile, tap } from 'rxjs/operators';
+import { Grid } from './models/grid';
+import { drawGliderPatternAction, loadAllPatternsAction, nextDayAction, savePatternAction } from './store/actions/grid.actions';
 import { RootState } from './store/reducers';
+import { getCurrentGrid } from './store/selectors/grid.selectors';
 
 @Component({
   selector: 'gol-root',
@@ -17,7 +19,7 @@ export class AppComponent {
 
   constructor(private store: Store<RootState>) {
     this.drawGlider();
-    this.play();
+    this.pause();
   }
 
   public play(): void {
@@ -38,4 +40,18 @@ export class AppComponent {
   public drawGlider(): void {
     this.store.dispatch(drawGliderPatternAction());
   }
+
+  public save(): void {
+    const name = 'test 2';
+    this.store.pipe(select(getCurrentGrid), take(1))
+      .subscribe((grid) => {
+        this.store.dispatch(savePatternAction({ name, grid }));
+      });
+
+  }
+
+  public loadAll(): void {
+    this.store.dispatch(loadAllPatternsAction());
+  }
+
 }

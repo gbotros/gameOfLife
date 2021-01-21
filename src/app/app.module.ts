@@ -13,6 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/app.effects';
+import { GridEffects } from './store/effects/grid.effects';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AppEffects } from './store/app.effects';
     FlexLayoutModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([AppEffects])
+    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forFeature([GridEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,6 +7,15 @@
 <button (click)="pause()" *ngIf="inPlayMode"> Pause </button>
 <button (click)="next()" *ngIf="!inPlayMode"> Next </button>
 
+<div>
+  <button (click)="save()"> Save Patteren </button>
+  <input />
+</div>
+
+<div>
+  <button (click)="loadAll()"> Load All </button>
+</div>
+
 <gol-grid>
 
 </gol-grid>

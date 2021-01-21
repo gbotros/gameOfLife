@@ -1,6 +1,13 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { Grid, DefaultGrid } from 'src/app/models/grid';
-import { drawGliderPatternAction, flipCellAction, nextDayAction } from '../actions/grid.actions';
+import {
+  drawGliderPatternAction,
+  flipCellAction,
+  nextDayAction,
+  savePatternAction,
+  savePatternFailureAction,
+  savePatternSuccessAction
+} from '../actions/grid.actions';
 
 
 export const gameReducerFeatureKey = 'gameReducer';
@@ -29,7 +36,30 @@ const gameReducer = createReducer(
       currentGrid: state.currentGrid.getGliderPatternGrid()
     };
   }
-  )
+  ),
+
+  on(savePatternSuccessAction, (state: State): State => {
+    return {
+      ...state
+    };
+  }
+  ),
+
+  on(savePatternFailureAction, (state: State): State => {
+    return {
+      ...state
+    };
+  }
+  ),
+
+  on(savePatternAction, (state: State): State => {
+    return {
+      ...state
+    };
+  }
+  ),
+
+
 );
 
 export function reducer(state: State | undefined, action: Action): State {
