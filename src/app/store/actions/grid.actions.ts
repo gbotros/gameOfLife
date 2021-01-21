@@ -5,6 +5,7 @@ export enum GridActions {
   NextDay = '[GameOfLife] NextDay',
   DrawGliderPattern = '[GameOfLife] DrawGliderPattern',
   FlipCellAction = '[GameOfLife] FlipCellAction',
+  DrawPatternAction = '[GameOfLife] DrawPatternAction',
 
   SavePattern = '[GameOfLife] SavePattern',
   SavePatternSuccess = '[GameOfLife] SavePatternSuccess',
@@ -12,7 +13,11 @@ export enum GridActions {
 
   LoadAllPatterns = '[GameOfLife] LoadAllPatterns',
   LoadAllPatternsSuccess = '[GameOfLife] LoadAllPatternsSuccess',
-  LoadAllPatternsFailure = '[GameOfLife] LoadAllPatternsFailure'
+  LoadAllPatternsFailure = '[GameOfLife] LoadAllPatternsFailure',
+
+  RemovePatternAction = '[GameOfLife] RemovePatternAction',
+  RemovePatternSuccessAction = '[GameOfLife] RemovePatternSuccessAction',
+  RemovePatternFailureAction = '[GameOfLife] RemovePatternFailureAction'
 }
 
 export const nextDayAction = createAction(
@@ -27,12 +32,18 @@ export const flipCellAction = createAction(
   GridActions.DrawGliderPattern
 );
 
+export const drawPatternAction = createAction(
+  GridActions.DrawPatternAction,
+  props<{ name: string }>()
+);
+
 export const savePatternAction = createAction(
   GridActions.SavePattern,
   props<{ name: string, grid: Grid }>()
 );
 export const savePatternSuccessAction = createAction(
-  GridActions.SavePatternSuccess
+  GridActions.SavePatternSuccess,
+  props<{ name: string, grid: Grid }>()
 );
 export const savePatternFailureAction = createAction(
   GridActions.SavePatternFailure,
@@ -43,9 +54,23 @@ export const loadAllPatternsAction = createAction(
   GridActions.LoadAllPatterns
 );
 export const loadAllPatternsSuccessAction = createAction(
-  GridActions.LoadAllPatternsSuccess
+  GridActions.LoadAllPatternsSuccess,
+  props<{ allGrids: { [id: string]: Grid } }>()
 );
 export const loadAllPatternsFailureAction = createAction(
   GridActions.LoadAllPatternsFailure,
+  props<{ error: string }>()
+);
+
+export const removePatternAction = createAction(
+  GridActions.RemovePatternAction,
+  props<{ name: string }>()
+);
+export const removePatternSuccessAction = createAction(
+  GridActions.RemovePatternSuccessAction,
+  props<{ name: string }>()
+);
+export const removePatternFailureAction = createAction(
+  GridActions.RemovePatternFailureAction,
   props<{ error: string }>()
 );

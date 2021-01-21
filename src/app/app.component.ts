@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subscription, timer } from 'rxjs';
 import { take, takeWhile, tap } from 'rxjs/operators';
@@ -14,12 +15,15 @@ import { getCurrentGrid } from './store/selectors/grid.selectors';
 })
 export class AppComponent {
   public inPlayMode = true;
+  public patternName = 'Pattern Sample 1';
+  public patternNumber = 1;
   private readonly _1sec = 1000;
   private playModeSubscription = new Subscription();
 
   constructor(private store: Store<RootState>) {
     this.drawGlider();
     this.pause();
+    this.loadAll();
   }
 
   public play(): void {
@@ -42,10 +46,12 @@ export class AppComponent {
   }
 
   public save(): void {
-    const name = 'test 2';
+    const name = this.patternName;
     this.store.pipe(select(getCurrentGrid), take(1))
       .subscribe((grid) => {
         this.store.dispatch(savePatternAction({ name, grid }));
+        this.patternNumber++;
+        this.patternName = 'Pattern Sample ' + this.patternNumber;
       });
 
   }

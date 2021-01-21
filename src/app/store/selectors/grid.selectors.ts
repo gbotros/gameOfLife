@@ -4,8 +4,15 @@ import * as fromGame from '../reducers/grid.reducer';
 import { State } from '../reducers/grid.reducer';
 
 
-export const selectGameFeature = (state: RootState) => state.gameState;
+export const selectGridFeature = (state: RootState) => state.gridState;
 
 export const getCurrentGrid =
-  createSelector(selectGameFeature,
+  createSelector(selectGridFeature,
     (state: fromGame.State) => state.currentGrid);
+
+export const getAllGrids =
+  createSelector(selectGridFeature,
+    (state: fromGame.State) => state.allGrids);
+
+
+

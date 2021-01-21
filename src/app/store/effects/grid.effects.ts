@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { GridService } from 'src/app/services/grid.service';
-import { GridActions, loadAllPatternsAction, loadAllPatternsFailureAction, loadAllPatternsSuccessAction, savePatternAction, savePatternFailureAction, savePatternSuccessAction } from '../actions/grid.actions';
+import { GridActions, loadAllPatternsAction, loadAllPatternsFailureAction, loadAllPatternsSuccessAction, removePatternAction, removePatternFailureAction, removePatternSuccessAction, savePatternAction, savePatternFailureAction, savePatternSuccessAction } from '../actions/grid.actions';
 
 
 
@@ -17,7 +17,7 @@ export class GridEffects {
       mergeMap(action => this.gridService.save(action.name, action.grid)
         .pipe(
           map(() => {
-            return savePatternSuccessAction();
+            return savePatternSuccessAction({ name: action.name, grid: action.grid });
           }),
           catchError((error) => of(savePatternFailureAction({ error })))
         ))
@@ -29,11 +29,21 @@ export class GridEffects {
       ofType(loadAllPatternsAction),
       mergeMap(action => this.gridService.loadAll()
         .pipe(
-          map(() => loadAllPatternsSuccessAction()),
+          map((allGrids) => loadAllPatternsSuccessAction(allGrids)),
           catchError((error) => of(loadAllPatternsFailureAction({ error })))
         ))
     );
   });
 
+  remove$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(removePatternAction),
+      mergeMap(action => this.gridService.remove(action.name)
+        .pipe(
+          map(() => removePatternSuccessAction({ name: action.name })),
+          catchError((error) => of(removePatternFailureAction({ error })))
+        ))
+    );
+  });
 
 }

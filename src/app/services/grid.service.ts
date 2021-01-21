@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Grid } from '../models/grid';
 
 @Injectable({
@@ -7,32 +7,36 @@ import { Grid } from '../models/grid';
 })
 export class GridService {
 
-  constructor() { }
+  private readonly prefix = 'GameOfLife_';
 
   public save(name: string, grid: Grid): Observable<void> {
-    localStorage.setItem(name, JSON.stringify(grid));
+    localStorage.setItem(this.prefix + name, JSON.stringify(grid));
     return of(void 0);
   }
 
-  public loadAll(): Observable<{ [id: string]: Grid }> {
-    const ls = { ...localStorage };
-    // console.log(ls);
-
+  public loadAll(): Observable<{ allGrids: { [id: string]: Grid } }> {
     const gridsDictionary: { [id: string]: Grid } = {};
     for (const [key, value] of Object.entries(localStorage)) {
 
-      const gridAsJson = value;
-      console.log(typeof (gridsDictionary[key]));
+      if (!key.startsWith(this.prefix)) {
+        continue;
+      }
 
-      const grid = Object.assign(new Grid(0, 0), gridAsJson);
+      const deserializedGrid = JSON.parse(value) as Grid;
+      const copy = Grid.copy(deserializedGrid);
 
-      gridsDictionary[key].next();
-      gridsDictionary[key] = grid;
+      copy.next();
+      const userKey = key.substring(this.prefix.length);
+      gridsDictionary[userKey] = copy;
     }
 
-    return of(gridsDictionary);
+    return of({ allGrids: gridsDictionary });
   }
 
+  public remove(name: string): Observable<void> {
+    localStorage.removeItem(this.prefix + name);
+    return of(void 0);
+  }
 
 
 

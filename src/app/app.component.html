@@ -2,19 +2,18 @@
   Game Of life
 </h1>
 
-<button (click)="drawGlider()"> Draw Glider patteren </button>
+<button (click)="drawGlider()"> Draw Glider pattern </button>
 <button (click)="play()" *ngIf="!inPlayMode"> Play </button>
 <button (click)="pause()" *ngIf="inPlayMode"> Pause </button>
 <button (click)="next()" *ngIf="!inPlayMode"> Next </button>
 
 <div>
-  <button (click)="save()"> Save Patteren </button>
-  <input />
+  <input [(ngModel)]="patternName" />
+  <button (click)="save()"> Save pattern </button>
 </div>
 
-<div>
-  <button (click)="loadAll()"> Load All </button>
-</div>
+
+<gol-pattern-list></gol-pattern-list>
 
 <gol-grid>
 

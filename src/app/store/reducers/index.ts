@@ -10,18 +10,18 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import { Grid } from 'src/app/models/grid';
 import { environment } from '../../../environments/environment';
 import { GridActions } from '../actions/grid.actions';
-import * as fromGame from './grid.reducer';
+import * as fromGrid from './grid.reducer';
 
 export interface RootState {
-  gameState: fromGame.State;
+  gridState: fromGrid.State;
 }
 
 export const initialRootState: RootState = {
-  gameState: fromGame.initialState,
+  gridState: fromGrid.initialState,
 };
 
 export const reducers: ActionReducerMap<RootState> = {
-  gameState: fromGame.reducer
+  gridState: fromGrid.reducer
 };
 
 
