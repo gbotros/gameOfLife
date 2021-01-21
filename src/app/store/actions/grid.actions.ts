@@ -30,7 +30,8 @@ export const drawGliderPatternAction = createAction(
 );
 
 export const flipCellAction = createAction(
-  GridActions.DrawGliderPattern
+  GridActions.FlipCellAction,
+  props<{ row: number, col: number }>()
 );
 
 export const drawPatternAction = createAction(

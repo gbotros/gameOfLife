@@ -18,7 +18,7 @@ import {
 } from '../actions/grid.actions';
 
 
-export const gameReducerFeatureKey = 'gameReducer';
+export const gridReducerFeatureKey = 'gridReducer';
 
 export interface State {
   currentGrid: Grid;
@@ -32,7 +32,7 @@ export const initialState: State = {
   error: ''
 };
 
-const gameReducer = createReducer(
+const gridReducer = createReducer(
   initialState,
   on(nextDayAction, (state: State): State => ({
     ...state,
@@ -42,16 +42,18 @@ const gameReducer = createReducer(
     ...state,
     currentGrid: state.currentGrid.getGliderPatternGrid()
   })),
-  on(flipCellAction, (state: State): State => {
+  on(flipCellAction, (state: State, { row, col }): State => {
+    const currentGrid = state.currentGrid;
+    currentGrid.cells[row][col].Flip();
     return {
       ...state,
-      currentGrid: state.currentGrid.getGliderPatternGrid()
+      currentGrid
     };
   }),
   on(drawPatternAction, (state: State, { name }): State => {
     return {
       ...state,
-      currentGrid: Grid.copy(state.allGrids[name])
+      currentGrid: state.allGrids[name]
     };
   }),
   on(setGridSizeAction, (state: State, { rows, cols }): State => {
@@ -130,5 +132,5 @@ const gameReducer = createReducer(
 );
 
 export function reducer(state: State | undefined, action: Action): State {
-  return gameReducer(state, action);
+  return gridReducer(state, action);
 }

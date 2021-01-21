@@ -4,8 +4,10 @@
   border: 1px solid black;
 }
 .alive {
-  background-color: white;
+  background-color: black;
+  color: white;
 }
 .dead {
-  background-color: gray;
+  background-color: white;
+  color: black;
 }

@@ -5,6 +5,7 @@ import { tap, map } from 'rxjs/operators';
 
 import { Cell } from '../models/cell';
 import { Grid, DefaultGrid } from '../models/grid';
+import { flipCellAction } from '../store/actions/grid.actions';
 import { RootState } from '../store/reducers';
 import * as fromGame from '../store/reducers/grid.reducer';
 import { getCurrentGrid } from '../store/selectors/grid.selectors';
@@ -18,13 +19,13 @@ export class GridComponent {
 
   public grid$: Observable<Grid>;
 
-
   constructor(private store: Store<RootState>) {
     this.grid$ = this.store.select(getCurrentGrid);
   }
 
   public cellClicked(cell: Cell): void {
-    cell.Flip();
+    console.log(cell);
+    this.store.dispatch(flipCellAction({ row: cell.row, col: cell.col }));
   }
 
 }

@@ -22,24 +22,6 @@ export class Grid {
     }
   }
 
-  public static copy(original: Grid): Grid {
-    const copyGrid = new Grid(original.rowsCount, original.colsCount);
-
-    for (let r = 0; r < original.rowsCount; r++) {
-      for (let c = 0; c < original.colsCount; c++) {
-
-        if (original.cells[r][c].isAlive) {
-          copyGrid.cells[r][c].Live();
-        }
-        else {
-          copyGrid.cells[r][c].Die();
-        }
-      }
-    }
-
-    return copyGrid;
-  }
-
   public next(): Grid {
     const nextGrid = new Grid(this.rowsCount, this.colsCount);
 

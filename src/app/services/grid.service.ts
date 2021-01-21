@@ -22,10 +22,9 @@ export class GridService {
         continue;
       }
 
-      const deserializedGrid = JSON.parse(value) as Grid;
-      const copy = Grid.copy(deserializedGrid);
+      const deserializedGrid = JSON.parse(value);
+      const copy = this.createGrid(deserializedGrid.rowsCount, deserializedGrid.colsCount, deserializedGrid.cells);
 
-      copy.next();
       const userKey = key.substring(this.prefix.length);
       gridsDictionary[userKey] = copy;
     }
@@ -38,6 +37,16 @@ export class GridService {
     return of(void 0);
   }
 
+  private createGrid(rowsCount: number, colsCount: number, cells: { _row: number, _col: number, _isAlive: boolean }[][]): Grid {
+    const copyGrid = new Grid(rowsCount, colsCount);
 
+    for (let r = 0; r < rowsCount; r++) {
+      for (let c = 0; c < colsCount; c++) {
+        copyGrid.cells[r][c].update(cells[r][c]._isAlive);
+      }
+    }
+
+    return copyGrid;
+  }
 
 }
