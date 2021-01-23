@@ -1,5 +1,28 @@
+@import "../variables.scss";
+
 .right-menu {
-  margin: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: $base-400-color;
+  height: 100%;
+
+  .header {
+    // border-top-left-radius: 10px;
+    // border-top-right-radius: 10px;
+    // padding: 10px 10px 30px 10px;
+
+    &-text {
+      font-size: xx-large;
+      font-weight: bold;
+      // margin-bottom: 30px;
+    }
+
+    a {
+      font-size: medium;
+    }
+  }
 }
 
 .number-box {

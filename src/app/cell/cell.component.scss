@@ -1,7 +1,10 @@
 .cell {
+  margin: 2px;
   width: 32px;
   height: 32px;
-  border: 1px solid black;
+  text-align: center;
+  line-height: 32px;
+  border-radius: 8px;
 }
 .alive {
   background-color: black;

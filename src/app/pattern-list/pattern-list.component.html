@@ -1,5 +1,8 @@
-<div *ngFor="let g of allGrids$ | async | keyvalue" class="list-item">
+<div *ngFor="let g of allGrids$ | async | keyvalue" class="list-item" fxLayout="row"
+     fxLayoutAlign="space-between center">
   {{ g.key }}
-  <button (click)="onDrawClick(g.key)">Draw</button>
-  <button (click)="onRemoveClick(g.key)">Remove</button>
+  <div>
+    <button (click)="onDrawClick(g.key)">Draw</button>
+    <button (click)="onRemoveClick(g.key)">Remove</button>
+  </div>
 </div>

@@ -1,38 +1,44 @@
-<div fxLayout="row" fxLayoutAlign="start start">
+<div fxLayout="row" fxLayoutAlign="start stretch">
 
+  <!-- right menu -->
   <div class="right-menu" fxFlex="none">
-    <h1>
-      Game Of life
-    </h1>
-
-    <p>
-      <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">
-        Conway's Game of Life at wikipedia
-      </a>
-    </p>
-
-    <div class="control-group">
-      <button (click)="drawGlider()"> Reset to Glider pattern </button>
+    <!-- header -->
+    <div class="header">
+      <div class="header-text">
+        Game Of life
+        <div>
+          <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">
+            @Wikipedia
+          </a>
+        </div>
+      </div>
     </div>
 
-    <div class="control-group">
-      <button (click)="play()" *ngIf="!inPlayMode"> Play </button>
-      <button (click)="pause()" *ngIf="inPlayMode"> Pause </button>
-      <button (click)="next()" *ngIf="!inPlayMode"> Next </button>
-    </div>
+    <!-- controls -->
+    <div>
+      <div class="control-group">
+        <button (click)="next()" *ngIf="!inPlayMode"> Next </button>
+        <button (click)="play()" *ngIf="!inPlayMode"> Auto Play </button>
+        <button (click)="pause()" *ngIf="inPlayMode"> Pause </button>
+      </div>
 
-    <div class="control-group">
-      <input [(ngModel)]="patternName" placeholder="Name your pattern" />
-      <button (click)="save()"> Save pattern </button>
-    </div>
+      <div class="control-group">
+        <button (click)="drawGlider()"> Reset to Glider pattern </button>
+      </div>
 
-    <div class="control-group">
-      <span> Height </span>
-      <input [(ngModel)]="rows" placeholder="Rows Count" type="number" min="3" max="40" class="number-box" />
+      <div class="control-group">
+        <input [(ngModel)]="patternName" placeholder="Name your pattern" />
+        <button (click)="save()"> Save pattern </button>
+      </div>
 
-      <span> Width </span>
-      <input [(ngModel)]="cols" placeholder="Columns Count" type="number" min="3" max="40" class="number-box" />
-      <button (click)="setGridSize()"> Change Grid Size</button>
+      <div class="control-group">
+        <span> Height </span>
+        <input [(ngModel)]="rows" placeholder="Rows Count" type="number" min="3" max="40" class="number-box" />
+
+        <span> Width </span>
+        <input [(ngModel)]="cols" placeholder="Columns Count" type="number" min="3" max="40" class="number-box" />
+        <button (click)="setGridSize()"> Change Grid Size</button>
+      </div>
     </div>
 
     <div class="control-group">

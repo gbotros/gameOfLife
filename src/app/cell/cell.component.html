@@ -4,7 +4,7 @@
     {{ cell.col }}
   </span>
 
-  <span *ngIf="cell.col === 0">
+  <span *ngIf="cell.col === 0 && cell.row > 0">
     {{ cell.row }}
   </span>
 </div>
