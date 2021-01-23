@@ -2,10 +2,7 @@
 
 visit me at https://brave-dune-0f977241e.azurestaticapps.net/
 
-Game of life is based on https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-
-this is a simple implementation to game of life with angular 
-
+simple Angular implementation based on https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 ## Features
 1- set grid size  
